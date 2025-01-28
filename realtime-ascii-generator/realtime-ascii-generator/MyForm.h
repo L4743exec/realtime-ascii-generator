@@ -1,5 +1,5 @@
 #pragma once
-#include "CameraForm.h"
+#include "Cam.h"
 #include <opencv2/core.hpp>
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/imgproc.hpp>
@@ -21,6 +21,10 @@ namespace realtimeasciigenerator {
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
+	private:
+		Bitmap^ loadedImage = nullptr; // Declare the loaded image here
+		System::Drawing::Color selectedColor = System::Drawing::Color::White; // Default color for ASCII rendering
+
 	public:
 		MyForm(void)
 		{
@@ -36,9 +40,11 @@ namespace realtimeasciigenerator {
 		/// </summary>
 		~MyForm()
 		{
-			if (components)
-			{
+			if (components) {
 				delete components;
+			}
+			if (loadedImage) {
+				delete loadedImage;
 			}
 		}
 	private:
@@ -65,6 +71,7 @@ namespace realtimeasciigenerator {
 	private: System::Windows::Forms::ToolStripButton^ camera;
 
 	private: System::Windows::Forms::Panel^ pictureBoxPanel;
+	private: System::Windows::Forms::ToolStripMenuItem^ specialCharactersToolStripMenuItem;
 
 
 
@@ -103,6 +110,7 @@ namespace realtimeasciigenerator {
 			this->camera = (gcnew System::Windows::Forms::ToolStripButton());
 			this->openFileDialog = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->saveFileDialog = (gcnew System::Windows::Forms::SaveFileDialog());
+			this->specialCharactersToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->toolStripContainer->ContentPanel->SuspendLayout();
 			this->toolStripContainer->TopToolStripPanel->SuspendLayout();
 			this->toolStripContainer->SuspendLayout();
@@ -216,6 +224,7 @@ namespace realtimeasciigenerator {
 			// 
 			// styleToolStripMenuItem
 			// 
+			this->styleToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->specialCharactersToolStripMenuItem });
 			this->styleToolStripMenuItem->Name = L"styleToolStripMenuItem";
 			this->styleToolStripMenuItem->Size = System::Drawing::Size(44, 20);
 			this->styleToolStripMenuItem->Text = L"Style";
@@ -280,6 +289,13 @@ namespace realtimeasciigenerator {
 			this->saveFileDialog->DefaultExt = L"png";
 			this->saveFileDialog->Filter = L"Image files|*.jpg;*.png";
 			// 
+			// specialCharactersToolStripMenuItem
+			// 
+			this->specialCharactersToolStripMenuItem->Name = L"specialCharactersToolStripMenuItem";
+			this->specialCharactersToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->specialCharactersToolStripMenuItem->Text = L"Special Characters";
+			this->specialCharactersToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::specialCharactersToolStripMenuItem_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -310,11 +326,19 @@ namespace realtimeasciigenerator {
 private: System::Void styleToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void openToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-	if (openFileDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK)
-	{
-		pictureBox->Image = Bitmap::FromFile(openFileDialog->FileName);
+	if (openFileDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+		// Dispose the previous image if it exists
+		if (loadedImage != nullptr) {
+			delete loadedImage;
+			loadedImage = nullptr;
+		}
+
+		// Load the new image
+		loadedImage = gcnew Bitmap(openFileDialog->FileName);
+		pictureBox->Image = loadedImage; // Display the loaded image
 	}
 }
+
 private: System::Void exitToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	Close();
 }
@@ -334,14 +358,85 @@ private: System::Void saveAsFileMenu_Click(System::Object^ sender, System::Event
 private: System::Void exportMenu_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void openFileButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (openFileDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+	{
+		pictureBox->Image = Bitmap::FromFile(openFileDialog->FileName);
+	}
 }
 private: System::Void saveFileButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (bmp != nullptr) {
+
+		bmp->Save(openFileDialog->FileName);
+
+	}
 }
 private: System::Void saveAsFileButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	if ((bmp != nullptr) && (saveFileDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK)) {
+
+		bmp->Save(saveFileDialog->FileName);
+	}
 }
 private: System::Void camera_Click(System::Object^ sender, System::EventArgs^ e) {
-	CameraForm^ cameraform = gcnew CameraForm();
-	cameraform->ShowDialog();
+	Cam^ cam = gcnew Cam();
+	cam->ShowDialog();
 }
+	   // ASCII conversion triggered by menu click
+private: System::Void specialCharactersToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (loadedImage == nullptr) {
+		MessageBox::Show("No image is loaded. Please open an image first.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		return;
+	}
+	// Lock the image for processing
+	Rectangle rect(0, 0, loadedImage->Width, loadedImage->Height);
+	BitmapData^ bmpData = loadedImage->LockBits(rect, ImageLockMode::ReadWrite, loadedImage->PixelFormat);
+
+	// Create an OpenCV Mat from the Bitmap
+	Mat image(loadedImage->Height, loadedImage->Width, CV_8UC3, bmpData->Scan0.ToPointer(), bmpData->Stride);
+
+	// Convert to grayscale
+	Mat grayImage;
+	cvtColor(image, grayImage, COLOR_BGR2GRAY);
+
+	// Convert to ASCII art
+	std::string asciiArt = convertToAscii(grayImage);
+
+	// Unlock the image
+	loadedImage->UnlockBits(bmpData);
+
+	// Render ASCII text into a new Bitmap
+	Bitmap^ asciiBmp = gcnew Bitmap(loadedImage->Width, loadedImage->Height);
+	Graphics^ g = Graphics::FromImage(asciiBmp);
+	g->Clear(System::Drawing::Color::Black);
+
+	// Use a brush with the desired color
+	Brush^ asciiBrush = gcnew SolidBrush(selectedColor);
+	g->DrawString(gcnew System::String(asciiArt.c_str()),
+		gcnew System::Drawing::Font("Consolas", 8),
+		asciiBrush,
+		System::Drawing::PointF(0, 0));
+
+	// Display the ASCII-rendered image in the PictureBox
+	pictureBox->Image = asciiBmp;
+}
+
+	   // Helper function: Convert OpenCV Mat to ASCII
+private: std::string convertToAscii(const Mat& grayImage) {
+	static const char* asciiChars = " .:-=+*#%@";
+	int rows = grayImage.rows;
+	int cols = grayImage.cols;
+	std::string asciiArt;
+
+	for (int y = 0; y < rows; y += 10) { // Adjust step for better visualization
+		for (int x = 0; x < cols; x += 5) { // Adjust step for better visualization
+			uchar pixel = grayImage.at<uchar>(y, x);
+			int index = (pixel * 9) / 255; // Map pixel to ASCII range
+			asciiArt += asciiChars[index];
+		}
+		asciiArt += '\n';
+	}
+
+	return asciiArt;
+}
+
 };
 }

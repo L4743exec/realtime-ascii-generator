@@ -1,4 +1,4 @@
 C:\Users\1473Q\Code\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\x64\Debug\realtime-ascii-generator.vcxproj.AssemblyReference.cache
-C:\Users\1473Q\Code\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\x64\Debug\realtimeasciigenerator.CameraForm.resources
+C:\Users\1473Q\Code\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\x64\Debug\realtimeasciigenerator.Cam.resources
 C:\Users\1473Q\Code\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\x64\Debug\realtimeasciigenerator.MyForm.resources
 C:\Users\1473Q\Code\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\x64\Debug\realtime-ascii-generator.vcxproj.GenerateResource.cache

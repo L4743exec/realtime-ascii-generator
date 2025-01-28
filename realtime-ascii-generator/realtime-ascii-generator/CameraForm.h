@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <opencv2/videoio.hpp>
 #include <opencv2/core.hpp>
@@ -43,7 +43,7 @@ namespace realtimeasciigenerator {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::PictureBox^ pictureBox;
+
 	private: System::Windows::Forms::Label^ stylelabel;
 
 	private: System::Windows::Forms::Label^ fpslabel;
@@ -54,7 +54,14 @@ namespace realtimeasciigenerator {
 	private:
 		Bitmap^ bmp;
 		bool isStart = false;
-		System::ComponentModel::Container ^components;
+	private: System::Windows::Forms::ToolStripContainer^ toolStripContainer1;
+	private: System::Windows::Forms::StatusStrip^ statusStrip;
+	private: System::Windows::Forms::ToolStripStatusLabel^ toolStripStatusLabel1;
+	private: System::Windows::Forms::ToolStripStatusLabel^ toolStripStatusLabel2;
+	private: System::Windows::Forms::ToolStrip^ toolStrip1;
+	private: System::Windows::Forms::ToolStripButton^ toolStripButton1;
+	private: System::Windows::Forms::ToolStripButton^ toolStripButton2;
+		   System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -63,72 +70,153 @@ namespace realtimeasciigenerator {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->pictureBox = (gcnew System::Windows::Forms::PictureBox());
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(CameraForm::typeid));
 			this->startButton = (gcnew System::Windows::Forms::Button());
-			this->stylelabel = (gcnew System::Windows::Forms::Label());  // Added initialization
-			this->fpslabel = (gcnew System::Windows::Forms::Label());    // Added initialization
-
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox))->BeginInit();
+			this->stylelabel = (gcnew System::Windows::Forms::Label());
+			this->fpslabel = (gcnew System::Windows::Forms::Label());
+			this->toolStripContainer1 = (gcnew System::Windows::Forms::ToolStripContainer());
+			this->toolStrip1 = (gcnew System::Windows::Forms::ToolStrip());
+			this->statusStrip = (gcnew System::Windows::Forms::StatusStrip());
+			this->toolStripStatusLabel1 = (gcnew System::Windows::Forms::ToolStripStatusLabel());
+			this->toolStripStatusLabel2 = (gcnew System::Windows::Forms::ToolStripStatusLabel());
+			this->toolStripButton1 = (gcnew System::Windows::Forms::ToolStripButton());
+			this->toolStripButton2 = (gcnew System::Windows::Forms::ToolStripButton());
+			this->toolStripContainer1->BottomToolStripPanel->SuspendLayout();
+			this->toolStripContainer1->TopToolStripPanel->SuspendLayout();
+			this->toolStripContainer1->SuspendLayout();
+			this->toolStrip1->SuspendLayout();
+			this->statusStrip->SuspendLayout();
 			this->SuspendLayout();
-
-			// 
-			// pictureBox
-			// 
-			this->pictureBox->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->pictureBox->Location = System::Drawing::Point(0, 0);
-			this->pictureBox->Name = L"pictureBox";
-			this->pictureBox->Size = System::Drawing::Size(361, 498);
-			this->pictureBox->TabIndex = 0;
-			this->pictureBox->TabStop = false;
-
-			// 
-			// stylelabel
-			// 
-			this->stylelabel->AutoSize = true;
-			this->stylelabel->Location = System::Drawing::Point(12, 9);
-			this->stylelabel->Name = L"stylelabel";
-			this->stylelabel->Size = System::Drawing::Size(77, 13);
-			this->stylelabel->TabIndex = 1;
-			this->stylelabel->Text = L"ASCII STYLE: ";
-			this->Controls->Add(this->stylelabel); // Add stylelabel to the form
-
-			// 
-			// fpslabel
-			// 
-			this->fpslabel->AutoSize = true;
-			this->fpslabel->Location = System::Drawing::Point(12, 22);
-			this->fpslabel->Name = L"fpslabel";
-			this->fpslabel->Size = System::Drawing::Size(33, 13);
-			this->fpslabel->TabIndex = 2;
-			this->fpslabel->Text = L"FPS: ";
-			this->Controls->Add(this->fpslabel); // Add fpslabel to the form
-
 			// 
 			// startButton
 			// 
-			this->startButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(
-				(System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
-			this->startButton->Location = System::Drawing::Point(231, 463);
+			this->startButton->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Bottom | System::Windows::Forms::AnchorStyles::Right));
+			this->startButton->Location = System::Drawing::Point(0, 0);
 			this->startButton->Name = L"startButton";
 			this->startButton->Size = System::Drawing::Size(75, 23);
 			this->startButton->TabIndex = 2;
 			this->startButton->Text = L"Start";
 			this->startButton->UseVisualStyleBackColor = true;
 			this->startButton->Click += gcnew System::EventHandler(this, &CameraForm::startButton_Click);
-			this->Controls->Add(this->startButton); // Add startButton to the form
-
+			// 
+			// stylelabel
+			// 
+			this->stylelabel->AutoSize = true;
+			this->stylelabel->Location = System::Drawing::Point(333, 25);
+			this->stylelabel->Name = L"stylelabel";
+			this->stylelabel->Size = System::Drawing::Size(77, 13);
+			this->stylelabel->TabIndex = 1;
+			this->stylelabel->Text = L"ASCII STYLE: ";
+			// 
+			// fpslabel
+			// 
+			this->fpslabel->AutoSize = true;
+			this->fpslabel->Location = System::Drawing::Point(377, 5);
+			this->fpslabel->Name = L"fpslabel";
+			this->fpslabel->Size = System::Drawing::Size(33, 13);
+			this->fpslabel->TabIndex = 2;
+			this->fpslabel->Text = L"FPS: ";
+			// 
+			// toolStripContainer1
+			// 
+			// 
+			// toolStripContainer1.BottomToolStripPanel
+			// 
+			this->toolStripContainer1->BottomToolStripPanel->Controls->Add(this->statusStrip);
+			// 
+			// toolStripContainer1.ContentPanel
+			// 
+			this->toolStripContainer1->ContentPanel->Size = System::Drawing::Size(488, 420);
+			this->toolStripContainer1->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->toolStripContainer1->Location = System::Drawing::Point(0, 0);
+			this->toolStripContainer1->Name = L"toolStripContainer1";
+			this->toolStripContainer1->Size = System::Drawing::Size(488, 467);
+			this->toolStripContainer1->TabIndex = 3;
+			this->toolStripContainer1->Text = L"toolStripContainer1";
+			// 
+			// toolStripContainer1.TopToolStripPanel
+			// 
+			this->toolStripContainer1->TopToolStripPanel->Controls->Add(this->toolStrip1);
+			// 
+			// toolStrip1
+			// 
+			this->toolStrip1->Dock = System::Windows::Forms::DockStyle::None;
+			this->toolStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+				this->toolStripButton1,
+					this->toolStripButton2
+			});
+			this->toolStrip1->Location = System::Drawing::Point(3, 0);
+			this->toolStrip1->Name = L"toolStrip1";
+			this->toolStrip1->Size = System::Drawing::Size(89, 25);
+			this->toolStrip1->TabIndex = 0;
+			this->toolStrip1->Text = L"toolStrip1";
+			// 
+			// statusStrip
+			// 
+			this->statusStrip->Dock = System::Windows::Forms::DockStyle::None;
+			this->statusStrip->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+				this->toolStripStatusLabel1,
+					this->toolStripStatusLabel2
+			});
+			this->statusStrip->Location = System::Drawing::Point(0, 0);
+			this->statusStrip->Name = L"statusStrip";
+			this->statusStrip->Size = System::Drawing::Size(488, 22);
+			this->statusStrip->TabIndex = 1;
+			// 
+			// toolStripStatusLabel1
+			// 
+			this->toolStripStatusLabel1->Name = L"toolStripStatusLabel1";
+			this->toolStripStatusLabel1->Size = System::Drawing::Size(118, 17);
+			this->toolStripStatusLabel1->Text = L"toolStripStatusLabel1";
+			// 
+			// toolStripStatusLabel2
+			// 
+			this->toolStripStatusLabel2->Name = L"toolStripStatusLabel2";
+			this->toolStripStatusLabel2->Size = System::Drawing::Size(118, 17);
+			this->toolStripStatusLabel2->Text = L"toolStripStatusLabel2";
+			// 
+			// toolStripButton1
+			// 
+			this->toolStripButton1->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripButton1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton1.Image")));
+			this->toolStripButton1->ImageTransparentColor = System::Drawing::Color::Magenta;
+			this->toolStripButton1->Name = L"toolStripButton1";
+			this->toolStripButton1->Size = System::Drawing::Size(23, 22);
+			this->toolStripButton1->Text = L"toolStripButton1";
+			// 
+			// toolStripButton2
+			// 
+			this->toolStripButton2->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripButton2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripButton2.Image")));
+			this->toolStripButton2->ImageTransparentColor = System::Drawing::Color::Magenta;
+			this->toolStripButton2->Name = L"toolStripButton2";
+			this->toolStripButton2->Size = System::Drawing::Size(23, 22);
+			this->toolStripButton2->Text = L"toolStripButton2";
 			// 
 			// CameraForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(520, 484);
-			this->Controls->Add(this->pictureBox);
+			this->ClientSize = System::Drawing::Size(488, 467);
+			this->Controls->Add(this->toolStripContainer1);
+			this->Controls->Add(this->stylelabel);
+			this->Controls->Add(this->fpslabel);
+			this->Controls->Add(this->startButton);
 			this->Name = L"CameraForm";
 			this->Text = L"CameraForm";
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox))->EndInit();
+			this->toolStripContainer1->BottomToolStripPanel->ResumeLayout(false);
+			this->toolStripContainer1->BottomToolStripPanel->PerformLayout();
+			this->toolStripContainer1->TopToolStripPanel->ResumeLayout(false);
+			this->toolStripContainer1->TopToolStripPanel->PerformLayout();
+			this->toolStripContainer1->ResumeLayout(false);
+			this->toolStripContainer1->PerformLayout();
+			this->toolStrip1->ResumeLayout(false);
+			this->toolStrip1->PerformLayout();
+			this->statusStrip->ResumeLayout(false);
+			this->statusStrip->PerformLayout();
 			this->ResumeLayout(false);
 			this->PerformLayout();
+
 		}
 
 #pragma endregion
@@ -145,15 +233,13 @@ namespace realtimeasciigenerator {
 		int capWidth = (int)capture.get(CAP_PROP_FRAME_WIDTH);
 		int capHeight = (int)capture.get(CAP_PROP_FRAME_HEIGHT);
 		int capFPS = (int)capture.get(CAP_PROP_FPS);
+		fpslabel->Text = System::String::Format("FPS: {0:D}", capFPS);
 		isStart = true;
 
 		bmp = gcnew Bitmap(capWidth, capHeight, PixelFormat::Format24bppRgb);
 		Rectangle rect = Rectangle(0, 0, bmp->Width, bmp->Height);
 
 		startButton->Text = "Stop";
-
-		// Sleep for 5 seconds
-		System::Threading::Thread::Sleep(5000);
 
 		while (isStart) {
 			BitmapData^ bmpData = bmp->LockBits(rect, ImageLockMode::ReadWrite, bmp->PixelFormat);
@@ -186,10 +272,9 @@ namespace realtimeasciigenerator {
 			Application::DoEvents();
 		}
 	}
-
 		   // Helper function: Convert OpenCV Mat to ASCII
 		   std::string convertToAscii(const Mat& grayImage) {
-			   static const char* asciiChars = " 010101010";
+			   static const char* asciiChars = " .:-=+*#%@";
 			   int rows = grayImage.rows;
 			   int cols = grayImage.cols;
 			   std::string asciiArt;
