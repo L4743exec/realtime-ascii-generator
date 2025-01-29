@@ -93,10 +93,10 @@ namespace realtimeasciigenerator {
 			this->menuStrip = (gcnew System::Windows::Forms::MenuStrip());
 			this->startMenu = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->styleMenu = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->customeToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->specialToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->englishCharactorToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->numberCharactorToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->customeToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->toolStripContainer1->BottomToolStripPanel->SuspendLayout();
 			this->toolStripContainer1->ContentPanel->SuspendLayout();
 			this->toolStripContainer1->TopToolStripPanel->SuspendLayout();
@@ -142,7 +142,7 @@ namespace realtimeasciigenerator {
 			this->style->Name = L"style";
 			this->style->Size = System::Drawing::Size(597, 17);
 			this->style->Spring = true;
-			this->style->Text = "Style: Special Characters";
+			this->style->Text = L"Style: Special Characters";
 			// 
 			// fps
 			// 
@@ -158,7 +158,6 @@ namespace realtimeasciigenerator {
 			this->pictureBox->Size = System::Drawing::Size(647, 514);
 			this->pictureBox->TabIndex = 0;
 			this->pictureBox->TabStop = false;
-			// 
 			// menuStrip
 			// 
 			this->menuStrip->Dock = System::Windows::Forms::DockStyle::None;
@@ -190,33 +189,33 @@ namespace realtimeasciigenerator {
 			this->styleMenu->Text = L"Style";
 			this->styleMenu->Click += gcnew System::EventHandler(this, &Cam::styleMenu_Click);
 			// 
-			// customeToolStripMenuItem
-			// 
-			this->customeToolStripMenuItem->Name = L"customeToolStripMenuItem";
-			this->customeToolStripMenuItem->Size = System::Drawing::Size(48, 20);
-			this->customeToolStripMenuItem->Text = L"Color";
-			this->customeToolStripMenuItem->Click += gcnew System::EventHandler(this, &Cam::customeToolStripMenuItem_Click);
-			// 
 			// specialToolStripMenuItem
 			// 
 			this->specialToolStripMenuItem->Name = L"specialToolStripMenuItem";
-			this->specialToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->specialToolStripMenuItem->Size = System::Drawing::Size(172, 22);
 			this->specialToolStripMenuItem->Text = L"Special Character";
 			this->specialToolStripMenuItem->Click += gcnew System::EventHandler(this, &Cam::specialToolStripMenuItem_Click);
 			// 
 			// englishCharactorToolStripMenuItem
 			// 
 			this->englishCharactorToolStripMenuItem->Name = L"englishCharactorToolStripMenuItem";
-			this->englishCharactorToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->englishCharactorToolStripMenuItem->Size = System::Drawing::Size(172, 22);
 			this->englishCharactorToolStripMenuItem->Text = L"English Character";
 			this->englishCharactorToolStripMenuItem->Click += gcnew System::EventHandler(this, &Cam::englishCharactorToolStripMenuItem_Click);
 			// 
 			// numberCharactorToolStripMenuItem
 			// 
 			this->numberCharactorToolStripMenuItem->Name = L"numberCharactorToolStripMenuItem";
-			this->numberCharactorToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->numberCharactorToolStripMenuItem->Size = System::Drawing::Size(172, 22);
 			this->numberCharactorToolStripMenuItem->Text = L"Number Character";
 			this->numberCharactorToolStripMenuItem->Click += gcnew System::EventHandler(this, &Cam::numberCharactorToolStripMenuItem_Click);
+			// 
+			// customeToolStripMenuItem
+			// 
+			this->customeToolStripMenuItem->Name = L"customeToolStripMenuItem";
+			this->customeToolStripMenuItem->Size = System::Drawing::Size(48, 20);
+			this->customeToolStripMenuItem->Text = L"Color";
+			this->customeToolStripMenuItem->Click += gcnew System::EventHandler(this, &Cam::customeToolStripMenuItem_Click);
 			// 
 			// Cam
 			// 

@@ -1,6 +1,7 @@
 ﻿  Cam.cpp
+  Draw.cpp
   Main.cpp
   MyForm.cpp
   Generating Code...
   Cam.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
-  realtime-ascii-generator.vcxproj -> D:\study\241-252\realtime-ascii-generator\realtime-ascii-generator\x64\Debug\realtime-ascii-generator.exe
+  realtime-ascii-generator.vcxproj -> C:\Users\1473Q\realtime-ascii-generator\realtime-ascii-generator\x64\Debug\realtime-ascii-generator.exe

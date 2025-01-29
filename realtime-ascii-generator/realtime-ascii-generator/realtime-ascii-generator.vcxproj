@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cam.cpp" />
+    <ClCompile Include="Draw.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
@@ -130,6 +131,9 @@
     <ClInclude Include="Cam.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Draw.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -137,6 +141,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Cam.resx">
       <DependentUpon>Cam.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Draw.resx">
+      <DependentUpon>Draw.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>

@@ -1,5 +1,6 @@
 #pragma once
 #include "Cam.h"
+#include "Draw.h"
 #include <opencv2/core.hpp>
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/imgproc.hpp>
@@ -23,7 +24,9 @@ namespace realtimeasciigenerator {
 	{
 	private:
 		Bitmap^ loadedImage = nullptr; // Declare the loaded image here
-		System::Drawing::Color selectedColor = System::Drawing::Color::White; // Default color for ASCII rendering
+	private: System::Windows::Forms::ToolStripButton^ draw;
+
+		   System::Drawing::Color selectedColor = System::Drawing::Color::White; // Default color for ASCII rendering
 
 	public:
 		MyForm(void)
@@ -103,14 +106,15 @@ namespace realtimeasciigenerator {
 			this->exportMenu = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->exitToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->styleToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->specialCharactersToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->toolStrip = (gcnew System::Windows::Forms::ToolStrip());
 			this->openFileButton = (gcnew System::Windows::Forms::ToolStripButton());
 			this->saveFileButton = (gcnew System::Windows::Forms::ToolStripButton());
 			this->saveAsFileButton = (gcnew System::Windows::Forms::ToolStripButton());
 			this->camera = (gcnew System::Windows::Forms::ToolStripButton());
+			this->draw = (gcnew System::Windows::Forms::ToolStripButton());
 			this->openFileDialog = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->saveFileDialog = (gcnew System::Windows::Forms::SaveFileDialog());
-			this->specialCharactersToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->toolStripContainer->ContentPanel->SuspendLayout();
 			this->toolStripContainer->TopToolStripPanel->SuspendLayout();
 			this->toolStripContainer->SuspendLayout();
@@ -230,16 +234,23 @@ namespace realtimeasciigenerator {
 			this->styleToolStripMenuItem->Text = L"Style";
 			this->styleToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::styleToolStripMenuItem_Click);
 			// 
+			// specialCharactersToolStripMenuItem
+			// 
+			this->specialCharactersToolStripMenuItem->Name = L"specialCharactersToolStripMenuItem";
+			this->specialCharactersToolStripMenuItem->Size = System::Drawing::Size(170, 22);
+			this->specialCharactersToolStripMenuItem->Text = L"Special Characters";
+			this->specialCharactersToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::specialCharactersToolStripMenuItem_Click);
+			// 
 			// toolStrip
 			// 
 			this->toolStrip->Dock = System::Windows::Forms::DockStyle::None;
-			this->toolStrip->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
+			this->toolStrip->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(5) {
 				this->openFileButton, this->saveFileButton,
-					this->saveAsFileButton, this->camera
+					this->saveAsFileButton, this->camera, this->draw
 			});
 			this->toolStrip->Location = System::Drawing::Point(3, 24);
 			this->toolStrip->Name = L"toolStrip";
-			this->toolStrip->Size = System::Drawing::Size(104, 25);
+			this->toolStrip->Size = System::Drawing::Size(158, 25);
 			this->toolStrip->TabIndex = 1;
 			// 
 			// openFileButton
@@ -279,6 +290,16 @@ namespace realtimeasciigenerator {
 			this->camera->Size = System::Drawing::Size(23, 22);
 			this->camera->Click += gcnew System::EventHandler(this, &MyForm::camera_Click);
 			// 
+			// draw
+			// 
+			this->draw->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->draw->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"draw.Image")));
+			this->draw->ImageTransparentColor = System::Drawing::Color::Magenta;
+			this->draw->Name = L"draw";
+			this->draw->Size = System::Drawing::Size(23, 22);
+			this->draw->Text = L"Draw";
+			this->draw->Click += gcnew System::EventHandler(this, &MyForm::draw_Click);
+			// 
 			// openFileDialog
 			// 
 			this->openFileDialog->FileName = L"openFileDialog";
@@ -288,13 +309,6 @@ namespace realtimeasciigenerator {
 			// 
 			this->saveFileDialog->DefaultExt = L"png";
 			this->saveFileDialog->Filter = L"Image files|*.jpg;*.png";
-			// 
-			// specialCharactersToolStripMenuItem
-			// 
-			this->specialCharactersToolStripMenuItem->Name = L"specialCharactersToolStripMenuItem";
-			this->specialCharactersToolStripMenuItem->Size = System::Drawing::Size(180, 22);
-			this->specialCharactersToolStripMenuItem->Text = L"Special Characters";
-			this->specialCharactersToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::specialCharactersToolStripMenuItem_Click);
 			// 
 			// MyForm
 			// 
@@ -438,5 +452,9 @@ private: std::string convertToAscii(const Mat& grayImage) {
 	return asciiArt;
 }
 
+private: System::Void draw_Click(System::Object^ sender, System::EventArgs^ e) {
+	Draw^ draw = gcnew Draw();
+	draw->ShowDialog();
+}
 };
 }
