@@ -2,3 +2,7 @@ C:\Users\1473Q\Code\realtime-ascii-generator\realtime-ascii-generator\realtime-a
 C:\Users\1473Q\Code\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\x64\Debug\realtimeasciigenerator.Cam.resources
 C:\Users\1473Q\Code\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\x64\Debug\realtimeasciigenerator.MyForm.resources
 C:\Users\1473Q\Code\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\x64\Debug\realtime-ascii-generator.vcxproj.GenerateResource.cache
+D:\study\241-252\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\x64\Debug\realtime-ascii-generator.vcxproj.AssemblyReference.cache
+D:\study\241-252\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\x64\Debug\realtimeasciigenerator.Cam.resources
+D:\study\241-252\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\x64\Debug\realtimeasciigenerator.MyForm.resources
+D:\study\241-252\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\x64\Debug\realtime-ascii-generator.vcxproj.GenerateResource.cache

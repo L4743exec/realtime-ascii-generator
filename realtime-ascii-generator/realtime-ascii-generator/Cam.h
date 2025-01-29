@@ -63,6 +63,9 @@ namespace realtimeasciigenerator {
 	private: System::Windows::Forms::ToolStripMenuItem^ styleMenu;
 	private: System::Windows::Forms::PictureBox^ pictureBox;
 	private: System::Windows::Forms::ToolStripMenuItem^ customeToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ specialToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ englishCharactorToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ numberCharactorToolStripMenuItem;
 
 
 
@@ -91,6 +94,9 @@ namespace realtimeasciigenerator {
 			this->startMenu = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->styleMenu = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->customeToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->specialToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->englishCharactorToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->numberCharactorToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->toolStripContainer1->BottomToolStripPanel->SuspendLayout();
 			this->toolStripContainer1->ContentPanel->SuspendLayout();
 			this->toolStripContainer1->TopToolStripPanel->SuspendLayout();
@@ -136,7 +142,7 @@ namespace realtimeasciigenerator {
 			this->style->Name = L"style";
 			this->style->Size = System::Drawing::Size(597, 17);
 			this->style->Spring = true;
-			this->style->Text = L"Style : ";
+			this->style->Text = "Style: Special Characters";
 			// 
 			// fps
 			// 
@@ -175,6 +181,10 @@ namespace realtimeasciigenerator {
 			// 
 			// styleMenu
 			// 
+			this->styleMenu->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
+				this->specialToolStripMenuItem,
+					this->englishCharactorToolStripMenuItem, this->numberCharactorToolStripMenuItem
+			});
 			this->styleMenu->Name = L"styleMenu";
 			this->styleMenu->Size = System::Drawing::Size(44, 20);
 			this->styleMenu->Text = L"Style";
@@ -186,6 +196,27 @@ namespace realtimeasciigenerator {
 			this->customeToolStripMenuItem->Size = System::Drawing::Size(48, 20);
 			this->customeToolStripMenuItem->Text = L"Color";
 			this->customeToolStripMenuItem->Click += gcnew System::EventHandler(this, &Cam::customeToolStripMenuItem_Click);
+			// 
+			// specialToolStripMenuItem
+			// 
+			this->specialToolStripMenuItem->Name = L"specialToolStripMenuItem";
+			this->specialToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->specialToolStripMenuItem->Text = L"Special Character";
+			this->specialToolStripMenuItem->Click += gcnew System::EventHandler(this, &Cam::specialToolStripMenuItem_Click);
+			// 
+			// englishCharactorToolStripMenuItem
+			// 
+			this->englishCharactorToolStripMenuItem->Name = L"englishCharactorToolStripMenuItem";
+			this->englishCharactorToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->englishCharactorToolStripMenuItem->Text = L"English Character";
+			this->englishCharactorToolStripMenuItem->Click += gcnew System::EventHandler(this, &Cam::englishCharactorToolStripMenuItem_Click);
+			// 
+			// numberCharactorToolStripMenuItem
+			// 
+			this->numberCharactorToolStripMenuItem->Name = L"numberCharactorToolStripMenuItem";
+			this->numberCharactorToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->numberCharactorToolStripMenuItem->Text = L"Number Character";
+			this->numberCharactorToolStripMenuItem->Click += gcnew System::EventHandler(this, &Cam::numberCharactorToolStripMenuItem_Click);
 			// 
 			// Cam
 			// 
@@ -212,6 +243,9 @@ namespace realtimeasciigenerator {
 
 		}
 #pragma endregion
+	private:
+		static const char* asciiCharset = " .:-=+*#%@"; // Default ASCII set
+
 	private: System::Void startMenu_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (isStart) {
 			isStart = false;
@@ -280,22 +314,22 @@ namespace realtimeasciigenerator {
 
 		   // Helper function: Convert OpenCV Mat to ASCII
 		   std::string convertToAscii(const Mat& grayImage) {
-			   static const char* asciiChars = " .:-=+*#%@";
 			   int rows = grayImage.rows;
 			   int cols = grayImage.cols;
 			   std::string asciiArt;
 
-			   for (int y = 0; y < rows; y += 10) { // Adjust the step for better visualization
-				   for (int x = 0; x < cols; x += 5) { // Adjust the step for better visualization
+			   for (int y = 0; y < rows; y += 10) {
+				   for (int x = 0; x < cols; x += 5) {
 					   uchar pixel = grayImage.at<uchar>(y, x);
 					   int index = (pixel * 9) / 255; // Map pixel to ASCII range
-					   asciiArt += asciiChars[index];
+					   asciiArt += asciiCharset[index];
 				   }
 				   asciiArt += '\n';
 			   }
 
 			   return asciiArt;
 		   }
+
 private: System::Void styleMenu_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void customeToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -310,5 +344,18 @@ private: System::Void customeToolStripMenuItem_Click(System::Object^ sender, Sys
 }
 
 
+private: System::Void numberCharactorToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	asciiCharset = " .12345678";
+	style->Text = "Style: Numbers";
+}
+
+private: System::Void englishCharactorToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	asciiCharset = "  .abcxyzXYZ";
+	style->Text = "Style: English Letters";
+}
+private: System::Void specialToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	asciiCharset = " .:-=+*#%@";
+	style->Text = "Style: Special Characters";
+}
 };
 }
