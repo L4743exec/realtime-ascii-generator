@@ -17,3 +17,8 @@ C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-
 C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\x64\Debug\realtimeasciigenerator.MyForm.resources
 C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\x64\Debug\realtime-ascii-generator.vcxproj.GenerateResource.cache
 D:\study\241-252\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\x64\Debug\realtimeasciigenerator.Draw.resources
+C:\Users\wikra\Desktop\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\x64\Debug\realtime-ascii-generator.vcxproj.AssemblyReference.cache
+C:\Users\wikra\Desktop\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\x64\Debug\realtimeasciigenerator.Cam.resources
+C:\Users\wikra\Desktop\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\x64\Debug\realtimeasciigenerator.Draw.resources
+C:\Users\wikra\Desktop\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\x64\Debug\realtimeasciigenerator.MyForm.resources
+C:\Users\wikra\Desktop\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\x64\Debug\realtime-ascii-generator.vcxproj.GenerateResource.cache
