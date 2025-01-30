@@ -18,6 +18,8 @@ namespace realtimeasciigenerator {
 	/// </summary>
 	public ref class Draw : public System::Windows::Forms::Form
 	{
+	private:
+		Bitmap^ loadedImage = nullptr; // Declare the loaded image here
 	public:
 		Draw(void)
 		{
@@ -25,6 +27,9 @@ namespace realtimeasciigenerator {
 			//
 			//TODO: Add the constructor code here
 			//
+			bmp = gcnew Bitmap(pictureBox1->Width, pictureBox1->Height);
+			graphics = Graphics::FromImage(bmp);
+			pictureBox1->Image = bmp;
 		}
 
 	protected:
@@ -33,15 +38,20 @@ namespace realtimeasciigenerator {
 		/// </summary>
 		~Draw()
 		{
-			if (components)
-			{
+			if (components) {
 				delete components;
+			}
+			if (loadedImage) {
+				delete loadedImage;
 			}
 		}
 	private:
 		Bitmap^ bmp;
-		bool isStart = false;
+		Graphics^ graphics;
+		bool isDrawing = false;
+		System::Drawing::Point lastPoint;
 		System::Drawing::Color selectedColor = System::Drawing::Color::Black; // Default color
+		System::String^ asciiCharset = " .:-=+*#%@"; // Default charset
 	private: System::Windows::Forms::ToolStripContainer^ toolStripContainer1;
 	protected:
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
@@ -53,12 +63,21 @@ namespace realtimeasciigenerator {
 	private: System::Diagnostics::EventLog^ eventLog1;
 	private: System::Windows::Forms::SaveFileDialog^ saveFileDialog1;
 	private: System::Windows::Forms::ToolStripMenuItem^ save;
+	private: System::Windows::Forms::ToolStripMenuItem^ numberCharactorToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ englishCharactorToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ specialToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ style;
+	private: System::Windows::Forms::ToolStripMenuItem^ openToolStripMenuItem;
+	private: System::Windows::Forms::OpenFileDialog^ openFileDialog1;
+	private: System::Windows::Forms::ToolStrip^ toolStrip;
+	private: System::Windows::Forms::ToolStripButton^ Eraser;
+
 
 	private:
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -67,21 +86,30 @@ namespace realtimeasciigenerator {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Draw::typeid));
 			this->toolStripContainer1 = (gcnew System::Windows::Forms::ToolStripContainer());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
 			this->fileToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->openToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->save = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->saveas = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->styleToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->numberCharactorToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->englishCharactorToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->specialToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->colorToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->toolStrip = (gcnew System::Windows::Forms::ToolStrip());
+			this->Eraser = (gcnew System::Windows::Forms::ToolStripButton());
 			this->eventLog1 = (gcnew System::Diagnostics::EventLog());
 			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
-			this->save = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->toolStripContainer1->ContentPanel->SuspendLayout();
 			this->toolStripContainer1->TopToolStripPanel->SuspendLayout();
 			this->toolStripContainer1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->menuStrip1->SuspendLayout();
+			this->toolStrip->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->eventLog1))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -91,7 +119,7 @@ namespace realtimeasciigenerator {
 			// toolStripContainer1.ContentPanel
 			// 
 			this->toolStripContainer1->ContentPanel->Controls->Add(this->pictureBox1);
-			this->toolStripContainer1->ContentPanel->Size = System::Drawing::Size(515, 237);
+			this->toolStripContainer1->ContentPanel->Size = System::Drawing::Size(515, 212);
 			this->toolStripContainer1->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->toolStripContainer1->Location = System::Drawing::Point(0, 0);
 			this->toolStripContainer1->Name = L"toolStripContainer1";
@@ -102,6 +130,7 @@ namespace realtimeasciigenerator {
 			// toolStripContainer1.TopToolStripPanel
 			// 
 			this->toolStripContainer1->TopToolStripPanel->Controls->Add(this->menuStrip1);
+			this->toolStripContainer1->TopToolStripPanel->Controls->Add(this->toolStrip);
 			// 
 			// pictureBox1
 			// 
@@ -111,6 +140,7 @@ namespace realtimeasciigenerator {
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::AutoSize;
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
+			this->pictureBox1->Click += gcnew System::EventHandler(this, &Draw::pictureBox1_Click);
 			this->pictureBox1->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &Draw::pictureBox1_MouseDown);
 			this->pictureBox1->MouseEnter += gcnew System::EventHandler(this, &Draw::pictureBox1_MouseEnter);
 			this->pictureBox1->MouseLeave += gcnew System::EventHandler(this, &Draw::pictureBox1_MouseLeave);
@@ -132,16 +162,33 @@ namespace realtimeasciigenerator {
 			// 
 			// fileToolStripMenuItem
 			// 
-			this->fileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
-				this->save,
-					this->saveas
+			this->fileToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
+				this->openToolStripMenuItem,
+					this->save, this->saveas
 			});
 			this->fileToolStripMenuItem->Name = L"fileToolStripMenuItem";
 			this->fileToolStripMenuItem->Size = System::Drawing::Size(37, 20);
 			this->fileToolStripMenuItem->Text = L"File";
 			// 
+			// openToolStripMenuItem
+			// 
+			this->openToolStripMenuItem->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"openToolStripMenuItem.Image")));
+			this->openToolStripMenuItem->Name = L"openToolStripMenuItem";
+			this->openToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->openToolStripMenuItem->Text = L"Open";
+			this->openToolStripMenuItem->Click += gcnew System::EventHandler(this, &Draw::openToolStripMenuItem_Click);
+			// 
+			// save
+			// 
+			this->save->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"save.Image")));
+			this->save->Name = L"save";
+			this->save->Size = System::Drawing::Size(180, 22);
+			this->save->Text = L"Save";
+			this->save->Click += gcnew System::EventHandler(this, &Draw::save_Click);
+			// 
 			// saveas
 			// 
+			this->saveas->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"saveas.Image")));
 			this->saveas->Name = L"saveas";
 			this->saveas->Size = System::Drawing::Size(180, 22);
 			this->saveas->Text = L"SaveAs";
@@ -149,9 +196,34 @@ namespace realtimeasciigenerator {
 			// 
 			// styleToolStripMenuItem
 			// 
+			this->styleToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
+				this->numberCharactorToolStripMenuItem,
+					this->englishCharactorToolStripMenuItem, this->specialToolStripMenuItem
+			});
 			this->styleToolStripMenuItem->Name = L"styleToolStripMenuItem";
 			this->styleToolStripMenuItem->Size = System::Drawing::Size(44, 20);
 			this->styleToolStripMenuItem->Text = L"Style";
+			// 
+			// numberCharactorToolStripMenuItem
+			// 
+			this->numberCharactorToolStripMenuItem->Name = L"numberCharactorToolStripMenuItem";
+			this->numberCharactorToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->numberCharactorToolStripMenuItem->Text = L"Number Characters";
+			this->numberCharactorToolStripMenuItem->Click += gcnew System::EventHandler(this, &Draw::numberCharactorToolStripMenuItem_Click);
+			// 
+			// englishCharactorToolStripMenuItem
+			// 
+			this->englishCharactorToolStripMenuItem->Name = L"englishCharactorToolStripMenuItem";
+			this->englishCharactorToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->englishCharactorToolStripMenuItem->Text = L"English Characters";
+			this->englishCharactorToolStripMenuItem->Click += gcnew System::EventHandler(this, &Draw::englishCharactorToolStripMenuItem_Click);
+			// 
+			// specialToolStripMenuItem
+			// 
+			this->specialToolStripMenuItem->Name = L"specialToolStripMenuItem";
+			this->specialToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->specialToolStripMenuItem->Text = L"Special Characters";
+			this->specialToolStripMenuItem->Click += gcnew System::EventHandler(this, &Draw::specialToolStripMenuItem_Click);
 			// 
 			// colorToolStripMenuItem
 			// 
@@ -160,16 +232,38 @@ namespace realtimeasciigenerator {
 			this->colorToolStripMenuItem->Text = L"Color";
 			this->colorToolStripMenuItem->Click += gcnew System::EventHandler(this, &Draw::colorToolStripMenuItem_Click);
 			// 
+			// toolStrip
+			// 
+			this->toolStrip->Dock = System::Windows::Forms::DockStyle::None;
+			this->toolStrip->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->Eraser });
+			this->toolStrip->Location = System::Drawing::Point(3, 24);
+			this->toolStrip->Name = L"toolStrip";
+			this->toolStrip->Size = System::Drawing::Size(35, 25);
+			this->toolStrip->TabIndex = 2;
+			// 
+			// Eraser
+			// 
+			this->Eraser->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->Eraser->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"Eraser.Image")));
+			this->Eraser->ImageTransparentColor = System::Drawing::Color::Magenta;
+			this->Eraser->Name = L"Eraser";
+			this->Eraser->Size = System::Drawing::Size(23, 22);
+			this->Eraser->Text = L"toolStripButton1";
+			this->Eraser->Click += gcnew System::EventHandler(this, &Draw::toolStripButton_Eraser_Click);
+			// 
 			// eventLog1
 			// 
 			this->eventLog1->SynchronizingObject = this;
 			// 
-			// save
+			// saveFileDialog1
 			// 
-			this->save->Name = L"save";
-			this->save->Size = System::Drawing::Size(180, 22);
-			this->save->Text = L"Save";
-			this->save->Click += gcnew System::EventHandler(this, &Draw::save_Click);
+			this->saveFileDialog1->DefaultExt = L"png";
+			this->saveFileDialog1->Filter = L"Image files|*.jpg;*.png";
+			// 
+			// openFileDialog1
+			// 
+			this->openFileDialog1->FileName = L"openFileDialog1";
+			this->openFileDialog1->FileOk += gcnew System::ComponentModel::CancelEventHandler(this, &Draw::openFileDialog1_FileOk);
 			// 
 			// Draw
 			// 
@@ -189,38 +283,156 @@ namespace realtimeasciigenerator {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->menuStrip1->ResumeLayout(false);
 			this->menuStrip1->PerformLayout();
+			this->toolStrip->ResumeLayout(false);
+			this->toolStrip->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->eventLog1))->EndInit();
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
-		   private: System::Void colorToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-			   // Create a ColorDialog instance
-			   ColorDialog^ colorDialog = gcnew ColorDialog();
+	private: System::Void colorToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		// Create a ColorDialog instance
+		ColorDialog^ colorDialog = gcnew ColorDialog();
 
-			   // Show the dialog and check if the user selected a color
-			   if (colorDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
-				   // Update the selectedColor with the user's choice
-				   selectedColor = colorDialog->Color;
-			   }
-		   }
-private: System::Void saveas_Click(System::Object^ sender, System::EventArgs^ e) {
-	if ((bmp != nullptr) && (saveFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)) {
-
-		bmp->Save(saveFileDialog1->FileName);
+		// Show the dialog and check if the user selected a color
+		if (colorDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+			// Update the selectedColor with the user's choice
+			selectedColor = colorDialog->Color;
+		}
 	}
-}
-private: System::Void pictureBox1_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
-}
-private: System::Void pictureBox1_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void pictureBox1_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void pictureBox1_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
-}
-private: System::Void pictureBox1_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
-}
-private: System::Void save_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-};
+	private: System::Void saveas_Click(System::Object^ sender, System::EventArgs^ e) {
+		if ((bmp != nullptr) && (saveFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)) {
+
+			bmp->Save(saveFileDialog1->FileName);
+		}
+	}
+	private: System::Void pictureBox1_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+		isDrawing = true;
+		lastPoint = e->Location;
+	}
+	private: System::Void pictureBox1_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void pictureBox1_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+		isDrawing = false;
+	}
+	private: System::Void pictureBox1_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+		if (isDrawing) {
+			DrawLine(lastPoint, e->Location);
+			lastPoint = e->Location;
+		}
+	}
+	private: System::Void pictureBox1_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+		isDrawing = false;
+	}
+	private: System::Void save_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: void DrawLine(System::Drawing::Point start, System::Drawing::Point end) {
+		// Determine the color to use (selectedColor or background color for eraser)
+		System::Drawing::Color colorToUse = isErasing ? System::Drawing::Color::White : selectedColor;
+
+		// Calculate the distance and direction of the line
+		int dx = end.X - start.X;
+		int dy = end.Y - start.Y;
+		int steps = Math::Max(Math::Abs(dx), Math::Abs(dy));
+		float xIncrement = dx / (float)steps;
+		float yIncrement = dy / (float)steps;
+
+		// Draw ASCII characters along the line
+		float x = start.X;
+		float y = start.Y;
+		for (int i = 0; i <= steps; i++) {
+			// Get the pixel color from the image
+			int pixelX = (int)x;
+			int pixelY = (int)y;
+
+			if (pixelX >= 0 && pixelX < bmp->Width && pixelY >= 0 && pixelY < bmp->Height) {
+				// Get pixel brightness (luminance)
+				System::Drawing::Color pixelColor = ((Bitmap^)pictureBox1->Image)->GetPixel(pixelX, pixelY);
+				int brightness = (int)(0.299 * pixelColor.R + 0.587 * pixelColor.G + 0.114 * pixelColor.B);
+
+				// Map brightness to ASCII charset
+				char asciiChar = asciiCharset[brightness * (asciiCharset->Length - 1) / 255]; // Scale brightness to index
+				graphics->DrawString(gcnew System::String(asciiChar.ToString()), gcnew System::Drawing::Font("Courier New", 10), gcnew SolidBrush(colorToUse), (int)x, (int)y);
+			}
+
+			x += xIncrement;
+			y += yIncrement;
+		}
+
+		// Refresh the PictureBox to show the updated bitmap
+		pictureBox1->Image = bmp;
+		pictureBox1->Refresh();
+	}
+	private: void ConvertLineToAscii(System::Drawing::Point start, System::Drawing::Point end) {
+		// Calculate the distance and direction of the line
+		int dx = end.X - start.X;
+		int dy = end.Y - start.Y;
+		int steps = Math::Max(Math::Abs(dx), Math::Abs(dy));
+		float xIncrement = dx / (float)steps;
+		float yIncrement = dy / (float)steps;
+
+		// Draw ASCII characters along the line
+		float x = start.X;
+		float y = start.Y;
+		for (int i = 0; i <= steps; i++) {
+			char asciiChar = asciiCharset[rand() % asciiCharset->Length]; // Random character from charset
+			graphics->DrawString(gcnew System::String(asciiChar.ToString()), gcnew System::Drawing::Font("Courier New", 10), gcnew SolidBrush(selectedColor), (int)x, (int)y);
+			x += xIncrement;
+			y += yIncrement;
+		}
+	}
+	private: System::Void numberCharactorToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		asciiCharset = " .12345678";
+		styleToolStripMenuItem->Text = "Style: Numbers";
+	}
+	private: System::Void englishCharactorToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		asciiCharset = "  .abcxyzXYZ";
+		styleToolStripMenuItem->Text = "Style: English Letters";
+	}
+	private: System::Void specialToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		asciiCharset = " .:-=+*#%@";
+		styleToolStripMenuItem->Text = "Style: Special Characters";
+	}
+	private: System::Void openToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+			// Dispose the previous image if it exists
+			if (loadedImage != nullptr) {
+				delete loadedImage;
+				loadedImage = nullptr;
+			}
+
+			// Load the new image
+			loadedImage = gcnew Bitmap(openFileDialog1->FileName);
+
+			// Create a new bitmap with the same size as the loaded image
+			bmp = gcnew Bitmap(loadedImage->Width, loadedImage->Height);
+			graphics = Graphics::FromImage(bmp);
+
+			// Draw the loaded image onto the new bitmap
+			graphics->DrawImage(loadedImage, 0, 0, loadedImage->Width, loadedImage->Height);
+
+			// Display the new bitmap in the PictureBox
+			pictureBox1->Image = bmp;
+			pictureBox1->Refresh();
+		}
+	}
+	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void openFileDialog1_FileOk(System::Object^ sender, System::ComponentModel::CancelEventArgs^ e) {
+	}
+	private:
+		bool isErasing = false;
+
+	private: System::Void toolStripButton_Eraser_Click(System::Object^ sender, System::EventArgs^ e) {
+		isErasing = !isErasing; // Toggle the eraser mode
+		if (isErasing) {
+			Eraser->BackColor = System::Drawing::Color::LightGray; // Indicate eraser is active
+		}
+		else {
+			Eraser->BackColor = System::Drawing::Color::Transparent; // Indicate eraser is inactive
+		}
+	}
+
+
+	};
 }
