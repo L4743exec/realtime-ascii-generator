@@ -1,98 +1,96 @@
 ﻿  Cam.cpp
-  Draw.cpp
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(341,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'Draw.cpp')
-  
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(342,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'Draw.cpp')
-  
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(354,20): warning C4244: 'initializing': conversion from 'wchar_t' to 'char', possible loss of data
-  (compiling source file 'Draw.cpp')
-  
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(355,161): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'Draw.cpp')
-  
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(355,153): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'Draw.cpp')
-  
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(375,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'Draw.cpp')
-  
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(376,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'Draw.cpp')
-  
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(378,19): warning C4244: 'initializing': conversion from 'wchar_t' to 'char', possible loss of data
-  (compiling source file 'Draw.cpp')
-  
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(379,163): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'Draw.cpp')
-  
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(379,155): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  (compiling source file 'Draw.cpp')
-  
   Main.cpp
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(341,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(335,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'Main.cpp')
   
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(342,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(356,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'Main.cpp')
   
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(354,20): warning C4244: 'initializing': conversion from 'wchar_t' to 'char', possible loss of data
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(362,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'Main.cpp')
   
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(355,161): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(363,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'Main.cpp')
   
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(355,153): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(364,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'Main.cpp')
   
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(375,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(369,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
   (compiling source file 'Main.cpp')
   
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(376,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(370,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
   (compiling source file 'Main.cpp')
   
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(378,19): warning C4244: 'initializing': conversion from 'wchar_t' to 'char', possible loss of data
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(379,51): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   (compiling source file 'Main.cpp')
   
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(379,163): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(379,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   (compiling source file 'Main.cpp')
   
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(379,155): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(417,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Main.cpp')
+  
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(422,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Main.cpp')
+  
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(423,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Main.cpp')
+  
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(424,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'Main.cpp')
+  
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(426,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'Main.cpp')
+  
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(427,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
   (compiling source file 'Main.cpp')
   
   MyForm.cpp
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(341,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(335,19): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'MyForm.cpp')
   
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(342,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(356,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'MyForm.cpp')
   
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(354,20): warning C4244: 'initializing': conversion from 'wchar_t' to 'char', possible loss of data
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(362,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'MyForm.cpp')
   
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(355,161): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(363,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'MyForm.cpp')
   
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(355,153): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(364,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'MyForm.cpp')
   
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(375,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(369,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
   (compiling source file 'MyForm.cpp')
   
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(376,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(370,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
   (compiling source file 'MyForm.cpp')
   
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(378,19): warning C4244: 'initializing': conversion from 'wchar_t' to 'char', possible loss of data
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(379,51): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   (compiling source file 'MyForm.cpp')
   
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(379,163): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(379,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   (compiling source file 'MyForm.cpp')
   
-C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(379,155): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(417,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
   (compiling source file 'MyForm.cpp')
   
-  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(422,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'MyForm.cpp')
+  
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(423,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'MyForm.cpp')
+  
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(424,20): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  (compiling source file 'MyForm.cpp')
+  
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(426,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'MyForm.cpp')
+  
+C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\realtime-ascii-generator\Draw.h(427,11): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  (compiling source file 'MyForm.cpp')
+  
   Generating Code...
   Cam.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   realtime-ascii-generator.vcxproj -> C:\Users\wikra\realtime-ascii-generator\realtime-ascii-generator\x64\Debug\realtime-ascii-generator.exe

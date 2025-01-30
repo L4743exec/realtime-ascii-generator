@@ -175,7 +175,7 @@ namespace realtimeasciigenerator {
 			this->openToolStripMenuItem->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"openToolStripMenuItem.Image")));
 			this->openToolStripMenuItem->Name = L"openToolStripMenuItem";
 			this->openToolStripMenuItem->Size = System::Drawing::Size(180, 22);
-			this->openToolStripMenuItem->Text = L"Open";
+			this->openToolStripMenuItem->Text = L"Ope?";
 			this->openToolStripMenuItem->Click += gcnew System::EventHandler(this, &Draw::openToolStripMenuItem_Click);
 			// 
 			// save
@@ -207,21 +207,21 @@ namespace realtimeasciigenerator {
 			// numberCharactorToolStripMenuItem
 			// 
 			this->numberCharactorToolStripMenuItem->Name = L"numberCharactorToolStripMenuItem";
-			this->numberCharactorToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->numberCharactorToolStripMenuItem->Size = System::Drawing::Size(177, 22);
 			this->numberCharactorToolStripMenuItem->Text = L"Number Characters";
 			this->numberCharactorToolStripMenuItem->Click += gcnew System::EventHandler(this, &Draw::numberCharactorToolStripMenuItem_Click);
 			// 
 			// englishCharactorToolStripMenuItem
 			// 
 			this->englishCharactorToolStripMenuItem->Name = L"englishCharactorToolStripMenuItem";
-			this->englishCharactorToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->englishCharactorToolStripMenuItem->Size = System::Drawing::Size(177, 22);
 			this->englishCharactorToolStripMenuItem->Text = L"English Characters";
 			this->englishCharactorToolStripMenuItem->Click += gcnew System::EventHandler(this, &Draw::englishCharactorToolStripMenuItem_Click);
 			// 
 			// specialToolStripMenuItem
 			// 
 			this->specialToolStripMenuItem->Name = L"specialToolStripMenuItem";
-			this->specialToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->specialToolStripMenuItem->Size = System::Drawing::Size(177, 22);
 			this->specialToolStripMenuItem->Text = L"Special Characters";
 			this->specialToolStripMenuItem->Click += gcnew System::EventHandler(this, &Draw::specialToolStripMenuItem_Click);
 			// 
@@ -267,6 +267,10 @@ namespace realtimeasciigenerator {
 			// 
 			// Draw
 			// 
+			this->numberCharactorToolStripMenuItem->Click += gcnew System::EventHandler(this, &Draw::numberCharactorToolStripMenuItem_Click);
+			this->englishCharactorToolStripMenuItem->Click += gcnew System::EventHandler(this, &Draw::englishCharactorToolStripMenuItem_Click);
+			this->specialToolStripMenuItem->Click += gcnew System::EventHandler(this, &Draw::specialToolStripMenuItem_Click);
+
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(515, 261);
@@ -315,84 +319,75 @@ namespace realtimeasciigenerator {
 	private: System::Void pictureBox1_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
 		isDrawing = false;
 	}
-	private: System::Void pictureBox1_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
-		if (isDrawing) {
-			DrawLine(lastPoint, e->Location);
-			lastPoint = e->Location;
-		}
-	}
+	
 	private: System::Void pictureBox1_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
 		isDrawing = false;
 	}
 	private: System::Void save_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: void DrawLine(System::Drawing::Point start, System::Drawing::Point end) {
-		// Determine the color to use (selectedColor or background color for eraser)
-		System::Drawing::Color colorToUse = isErasing ? System::Drawing::Color::White : selectedColor;
+		  
+		   Random^ rand = gcnew Random();
 
-		// Calculate the distance and direction of the line
-		int dx = end.X - start.X;
-		int dy = end.Y - start.Y;
-		int steps = Math::Max(Math::Abs(dx), Math::Abs(dy));
-		float xIncrement = dx / (float)steps;
-		float yIncrement = dy / (float)steps;
+	private: System::Void pictureBox1_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+		if (isDrawing) {
+			int dx = e->Location.X - lastPoint.X;
+			int dy = e->Location.Y - lastPoint.Y;
+			float distance = Math::Sqrt(dx * dx + dy * dy);
 
-		// Draw ASCII characters along the line
-		float x = start.X;
-		float y = start.Y;
-		for (int i = 0; i <= steps; i++) {
-			// Get the pixel color from the image
-			int pixelX = (int)x;
-			int pixelY = (int)y;
+			int spacing = 20; 
 
-			if (pixelX >= 0 && pixelX < bmp->Width && pixelY >= 0 && pixelY < bmp->Height) {
-				// Get pixel brightness (luminance)
-				System::Drawing::Color pixelColor = ((Bitmap^)pictureBox1->Image)->GetPixel(pixelX, pixelY);
-				int brightness = (int)(0.299 * pixelColor.R + 0.587 * pixelColor.G + 0.114 * pixelColor.B);
-
-				// Map brightness to ASCII charset
-				char asciiChar = asciiCharset[brightness * (asciiCharset->Length - 1) / 255]; // Scale brightness to index
-				graphics->DrawString(gcnew System::String(asciiChar.ToString()), gcnew System::Drawing::Font("Courier New", 10), gcnew SolidBrush(colorToUse), (int)x, (int)y);
+			if (distance >= spacing) {
+				if (isErasing) {
+					
+					EraseLine(lastPoint, e->Location);
+				}
+				else {
+					
+					DrawLine(lastPoint, e->Location);
+				}
+				lastPoint = e->Location;
 			}
-
-			x += xIncrement;
-			y += yIncrement;
 		}
-
-		// Refresh the PictureBox to show the updated bitmap
-		pictureBox1->Image = bmp;
-		pictureBox1->Refresh();
 	}
-	private: void ConvertLineToAscii(System::Drawing::Point start, System::Drawing::Point end) {
-		// Calculate the distance and direction of the line
+
+	private: void DrawLine(System::Drawing::Point start, System::Drawing::Point end) {
 		int dx = end.X - start.X;
 		int dy = end.Y - start.Y;
-		int steps = Math::Max(Math::Abs(dx), Math::Abs(dy));
-		float xIncrement = dx / (float)steps;
-		float yIncrement = dy / (float)steps;
+		float length = Math::Sqrt(dx * dx + dy * dy);
 
-		// Draw ASCII characters along the line
+		int spacing = 20; 
+		int steps = (int)(length / spacing); 
+
+		
+		float angle = Math::Atan2(dy, dx);
+		float xIncrement = Math::Cos(angle) * spacing;
+		float yIncrement = Math::Sin(angle) * spacing;
+
+		
+		array<wchar_t>^ asciiChars = { L'?', L':', L'.', L'-', L'@', L'&', L'*', L'%', L'#', L'$' };
+
 		float x = start.X;
 		float y = start.Y;
+
 		for (int i = 0; i <= steps; i++) {
-			char asciiChar = asciiCharset[rand() % asciiCharset->Length]; // Random character from charset
-			graphics->DrawString(gcnew System::String(asciiChar.ToString()), gcnew System::Drawing::Font("Courier New", 10), gcnew SolidBrush(selectedColor), (int)x, (int)y);
+			
+			wchar_t randomChar = asciiChars[rand->Next(asciiChars->Length)];
+
+			
+			graphics->DrawString(gcnew System::String(randomChar, 1),
+				gcnew System::Drawing::Font("Courier New", 14),
+				gcnew SolidBrush(selectedColor), (int)x, (int)y);
+
+			
 			x += xIncrement;
 			y += yIncrement;
 		}
+
+		pictureBox1->Refresh(); 
 	}
-	private: System::Void numberCharactorToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-		asciiCharset = " .12345678";
-		styleToolStripMenuItem->Text = "Style: Numbers";
-	}
-	private: System::Void englishCharactorToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-		asciiCharset = "  .abcxyzXYZ";
-		styleToolStripMenuItem->Text = "Style: English Letters";
-	}
-	private: System::Void specialToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-		asciiCharset = " .:-=+*#%@";
-		styleToolStripMenuItem->Text = "Style: Special Characters";
-	}
+
+	
+	
 	private: System::Void openToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
 			// Dispose the previous image if it exists
@@ -416,6 +411,40 @@ namespace realtimeasciigenerator {
 			pictureBox1->Refresh();
 		}
 	}
+	private: void EraseLine(System::Drawing::Point start, System::Drawing::Point end) {
+		int dx = end.X - start.X;
+		int dy = end.Y - start.Y;
+		float length = Math::Sqrt(dx * dx + dy * dy);
+
+		int spacing = 20;
+		int steps = (int)(length / spacing);
+
+		float angle = Math::Atan2(dy, dx);
+		float xIncrement = Math::Cos(angle) * spacing;
+		float yIncrement = Math::Sin(angle) * spacing;
+
+		float x = start.X;
+		float y = start.Y;
+
+		for (int i = 0; i <= steps; i++) {
+			graphics->FillRectangle(gcnew SolidBrush(System::Drawing::Color::White), (int)x, (int)y, spacing, spacing);
+			x += xIncrement;
+			y += yIncrement;
+		}
+
+		pictureBox1->Refresh();
+	}
+	private: System::Void numberCharactorToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		asciiCharset = "0123456789";
+	}
+
+	private: System::Void englishCharactorToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		asciiCharset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	}
+
+	private: System::Void specialToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		asciiCharset = "!@#$%^&*()_+-=[]{}|;':\",./<>?";
+	}
 	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void openFileDialog1_FileOk(System::Object^ sender, System::ComponentModel::CancelEventArgs^ e) {
@@ -424,12 +453,12 @@ namespace realtimeasciigenerator {
 		bool isErasing = false;
 
 	private: System::Void toolStripButton_Eraser_Click(System::Object^ sender, System::EventArgs^ e) {
-		isErasing = !isErasing; // Toggle the eraser mode
+		isErasing = !isErasing; // Toggle eraser mode
 		if (isErasing) {
-			Eraser->BackColor = System::Drawing::Color::LightGray; // Indicate eraser is active
+			Eraser->BackColor = System::Drawing::Color::LightGray; 
 		}
 		else {
-			Eraser->BackColor = System::Drawing::Color::Transparent; // Indicate eraser is inactive
+			Eraser->BackColor = System::Drawing::Color::Transparent; 
 		}
 	}
 

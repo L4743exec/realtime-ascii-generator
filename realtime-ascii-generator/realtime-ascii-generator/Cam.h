@@ -66,6 +66,7 @@ namespace realtimeasciigenerator {
 	private: System::Windows::Forms::ToolStripMenuItem^ specialToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ englishCharactorToolStripMenuItem;
 	private: System::Windows::Forms::ToolStripMenuItem^ numberCharactorToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ captureMenu;
 
 
 
@@ -240,6 +241,14 @@ namespace realtimeasciigenerator {
 			this->menuStrip->PerformLayout();
 			this->ResumeLayout(false);
 
+			
+			this->captureMenu = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->menuStrip->Items->Add(this->captureMenu);
+			this->captureMenu->Name = L"captureMenu";
+			this->captureMenu->Size = System::Drawing::Size(61, 20);
+			this->captureMenu->Text = L"Capture";
+			this->captureMenu->Click += gcnew System::EventHandler(this, &Cam::captureMenu_Click);
+
 		}
 #pragma endregion
 	private:
@@ -355,6 +364,31 @@ private: System::Void englishCharactorToolStripMenuItem_Click(System::Object^ se
 private: System::Void specialToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
 	asciiCharset = " .:-=+*#%@";
 	style->Text = "Style: Special Characters";
+}
+
+private: System::Void captureMenu_Click(System::Object^ sender, System::EventArgs^ e) {
+	if (pictureBox->Image != nullptr) {
+		SaveFileDialog^ saveFileDialog = gcnew SaveFileDialog();
+		saveFileDialog->Filter = "JPEG Image|*.jpg|Bitmap Image|*.bmp|PNG Image|*.png";
+		saveFileDialog->Title = "Save an Image File";
+		saveFileDialog->ShowDialog();
+
+		if (saveFileDialog->FileName != "") {
+			System::IO::FileStream^ fs = (System::IO::FileStream^)saveFileDialog->OpenFile();
+			switch (saveFileDialog->FilterIndex) {
+			case 1:
+				pictureBox->Image->Save(fs, System::Drawing::Imaging::ImageFormat::Jpeg);
+				break;
+			case 2:
+				pictureBox->Image->Save(fs, System::Drawing::Imaging::ImageFormat::Bmp);
+				break;
+			case 3:
+				pictureBox->Image->Save(fs, System::Drawing::Imaging::ImageFormat::Png);
+				break;
+			}
+			fs->Close();
+		}
+	}
 }
 };
 }
