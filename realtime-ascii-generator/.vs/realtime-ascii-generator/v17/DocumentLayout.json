@@ -1,30 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\wikra\\realtime-ascii-generator\\realtime-ascii-generator\\",
+  "WorkspaceRootPath": "D:\\study\\241-252\\realtime-ascii-generator\\realtime-ascii-generator\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{95F86104-F5AE-4A68-957A-4903CC3CA236}|realtime-ascii-generator\\realtime-ascii-generator.vcxproj|C:\\Users\\wikra\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\Draw.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{95F86104-F5AE-4A68-957A-4903CC3CA236}|realtime-ascii-generator\\realtime-ascii-generator.vcxproj|solutionrelative:realtime-ascii-generator\\Draw.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{95F86104-F5AE-4A68-957A-4903CC3CA236}|realtime-ascii-generator\\realtime-ascii-generator.vcxproj|C:\\Users\\wikra\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\Draw.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form",
-      "RelativeMoniker": "D:0:0:{95F86104-F5AE-4A68-957A-4903CC3CA236}|realtime-ascii-generator\\realtime-ascii-generator.vcxproj|solutionrelative:realtime-ascii-generator\\Draw.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{95F86104-F5AE-4A68-957A-4903CC3CA236}|realtime-ascii-generator\\realtime-ascii-generator.vcxproj|C:\\Users\\wikra\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\MyForm.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{95F86104-F5AE-4A68-957A-4903CC3CA236}|realtime-ascii-generator\\realtime-ascii-generator.vcxproj|D:\\study\\241-252\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\MyForm.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{95F86104-F5AE-4A68-957A-4903CC3CA236}|realtime-ascii-generator\\realtime-ascii-generator.vcxproj|solutionrelative:realtime-ascii-generator\\MyForm.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{95F86104-F5AE-4A68-957A-4903CC3CA236}|realtime-ascii-generator\\realtime-ascii-generator.vcxproj|C:\\Users\\wikra\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\MyForm.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form",
+      "AbsoluteMoniker": "D:0:0:{95F86104-F5AE-4A68-957A-4903CC3CA236}|realtime-ascii-generator\\realtime-ascii-generator.vcxproj|D:\\study\\241-252\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\MyForm.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form",
       "RelativeMoniker": "D:0:0:{95F86104-F5AE-4A68-957A-4903CC3CA236}|realtime-ascii-generator\\realtime-ascii-generator.vcxproj|solutionrelative:realtime-ascii-generator\\MyForm.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{95F86104-F5AE-4A68-957A-4903CC3CA236}|realtime-ascii-generator\\realtime-ascii-generator.vcxproj|C:\\Users\\wikra\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\Cam.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form",
+      "AbsoluteMoniker": "D:0:0:{95F86104-F5AE-4A68-957A-4903CC3CA236}|realtime-ascii-generator\\realtime-ascii-generator.vcxproj|D:\\study\\241-252\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\Cam.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{95F86104-F5AE-4A68-957A-4903CC3CA236}|realtime-ascii-generator\\realtime-ascii-generator.vcxproj|solutionrelative:realtime-ascii-generator\\Cam.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{95F86104-F5AE-4A68-957A-4903CC3CA236}|realtime-ascii-generator\\realtime-ascii-generator.vcxproj|D:\\study\\241-252\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\Cam.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form",
       "RelativeMoniker": "D:0:0:{95F86104-F5AE-4A68-957A-4903CC3CA236}|realtime-ascii-generator\\realtime-ascii-generator.vcxproj|solutionrelative:realtime-ascii-generator\\Cam.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{95F86104-F5AE-4A68-957A-4903CC3CA236}|realtime-ascii-generator\\realtime-ascii-generator.vcxproj|C:\\Users\\wikra\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\Cam.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{95F86104-F5AE-4A68-957A-4903CC3CA236}|realtime-ascii-generator\\realtime-ascii-generator.vcxproj|solutionrelative:realtime-ascii-generator\\Cam.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{95F86104-F5AE-4A68-957A-4903CC3CA236}|realtime-ascii-generator\\realtime-ascii-generator.vcxproj|D:\\study\\241-252\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\Draw.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{95F86104-F5AE-4A68-957A-4903CC3CA236}|realtime-ascii-generator\\realtime-ascii-generator.vcxproj|solutionrelative:realtime-ascii-generator\\Draw.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{95F86104-F5AE-4A68-957A-4903CC3CA236}|realtime-ascii-generator\\realtime-ascii-generator.vcxproj|D:\\study\\241-252\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\Draw.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form",
+      "RelativeMoniker": "D:0:0:{95F86104-F5AE-4A68-957A-4903CC3CA236}|realtime-ascii-generator\\realtime-ascii-generator.vcxproj|solutionrelative:realtime-ascii-generator\\Draw.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,11 +42,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "Draw.h [Design]",
-              "DocumentMoniker": "C:\\Users\\wikra\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\Draw.h",
+              "DocumentMoniker": "D:\\study\\241-252\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\Draw.h",
               "RelativeDocumentMoniker": "realtime-ascii-generator\\Draw.h",
-              "ToolTip": "C:\\Users\\wikra\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\Draw.h [Design]",
+              "ToolTip": "D:\\study\\241-252\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\Draw.h [Design]",
               "RelativeToolTip": "realtime-ascii-generator\\Draw.h [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-01-30T12:41:27.949Z",
@@ -54,62 +54,66 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "Draw.h",
-              "DocumentMoniker": "C:\\Users\\wikra\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\Draw.h",
+              "DocumentMoniker": "D:\\study\\241-252\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\Draw.h",
               "RelativeDocumentMoniker": "realtime-ascii-generator\\Draw.h",
-              "ToolTip": "C:\\Users\\wikra\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\Draw.h",
+              "ToolTip": "D:\\study\\241-252\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\Draw.h",
               "RelativeToolTip": "realtime-ascii-generator\\Draw.h",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAADIAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAADIAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-01-29T14:37:44.73Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "MyForm.h",
-              "DocumentMoniker": "C:\\Users\\wikra\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\MyForm.h",
+              "DocumentMoniker": "D:\\study\\241-252\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\MyForm.h",
               "RelativeDocumentMoniker": "realtime-ascii-generator\\MyForm.h",
-              "ToolTip": "C:\\Users\\wikra\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\MyForm.h",
+              "ToolTip": "D:\\study\\241-252\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\MyForm.h",
               "RelativeToolTip": "realtime-ascii-generator\\MyForm.h",
-              "ViewState": "AgIAAKEBAAAAAAAAAAAlwH8BAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAHwBAAAAAAAAAAAYwIkBAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-29T12:00:11.735Z"
+              "WhenOpened": "2025-01-29T12:00:11.735Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MyForm.h [Design]",
+              "DocumentMoniker": "D:\\study\\241-252\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\MyForm.h",
+              "RelativeDocumentMoniker": "realtime-ascii-generator\\MyForm.h",
+              "ToolTip": "D:\\study\\241-252\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\MyForm.h [Design]",
+              "RelativeToolTip": "realtime-ascii-generator\\MyForm.h [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-29T12:00:08.507Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Cam.h",
+              "DocumentMoniker": "D:\\study\\241-252\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\Cam.h",
+              "RelativeDocumentMoniker": "realtime-ascii-generator\\Cam.h",
+              "ToolTip": "D:\\study\\241-252\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\Cam.h",
+              "RelativeToolTip": "realtime-ascii-generator\\Cam.h",
+              "ViewState": "AgIAAF0BAAAAAAAAAAAUwGgBAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-29T08:34:41.668Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "MyForm.h [Design]",
-              "DocumentMoniker": "C:\\Users\\wikra\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\MyForm.h",
-              "RelativeDocumentMoniker": "realtime-ascii-generator\\MyForm.h",
-              "ToolTip": "C:\\Users\\wikra\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\MyForm.h [Design]",
-              "RelativeToolTip": "realtime-ascii-generator\\MyForm.h [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-29T12:00:08.507Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Cam.h",
-              "DocumentMoniker": "C:\\Users\\wikra\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\Cam.h",
-              "RelativeDocumentMoniker": "realtime-ascii-generator\\Cam.h",
-              "ToolTip": "C:\\Users\\wikra\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\Cam.h",
-              "RelativeToolTip": "realtime-ascii-generator\\Cam.h",
-              "ViewState": "AgIAAGMBAAAAAAAAAAAUwHcBAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-29T08:34:41.668Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "Cam.h [Design]",
-              "DocumentMoniker": "C:\\Users\\wikra\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\Cam.h",
+              "DocumentMoniker": "D:\\study\\241-252\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\Cam.h",
               "RelativeDocumentMoniker": "realtime-ascii-generator\\Cam.h",
-              "ToolTip": "C:\\Users\\wikra\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\Cam.h [Design]",
+              "ToolTip": "D:\\study\\241-252\\realtime-ascii-generator\\realtime-ascii-generator\\realtime-ascii-generator\\Cam.h [Design]",
               "RelativeToolTip": "realtime-ascii-generator\\Cam.h [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-01-29T08:33:48.783Z"
+              "WhenOpened": "2025-01-29T08:33:48.783Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }
