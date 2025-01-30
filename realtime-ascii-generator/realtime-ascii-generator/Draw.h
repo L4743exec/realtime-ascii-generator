@@ -46,12 +46,14 @@ namespace realtimeasciigenerator {
 			}
 		}
 	private:
+		
+
 		Bitmap^ bmp;
 		Graphics^ graphics;
 		bool isDrawing = false;
 		System::Drawing::Point lastPoint;
 		System::Drawing::Color selectedColor = System::Drawing::Color::Black; // Default color
-		System::String^ asciiCharset = " .:-=+*#%@"; // Default charset
+		//System::String^ asciiCharset = " .:-=+*#%@"; // Default charset
 	private: System::Windows::Forms::ToolStripContainer^ toolStripContainer1;
 	protected:
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
@@ -349,25 +351,35 @@ namespace realtimeasciigenerator {
 			}
 		}
 	}
+	private: System::String^ asciiChars = "0123456789"; 
 
+	private: System::Void numberCharactorToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		asciiChars = "0123456789";
+	}
+
+	private: System::Void englishCharactorToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		asciiChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	}
+
+	private: System::Void specialToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		asciiChars = "!@#$%^&*()_+-=[]{}|;':\",./<>?";
+	}
 	private: void DrawLine(System::Drawing::Point start, System::Drawing::Point end) {
 		int dx = end.X - start.X;
 		int dy = end.Y - start.Y;
 		float length = Math::Sqrt(dx * dx + dy * dy);
 
-		int spacing = 20; 
-		int steps = (int)(length / spacing); 
+		int spacing = 20;
+		int steps = (int)(length / spacing);
 
-		
 		float angle = Math::Atan2(dy, dx);
 		float xIncrement = Math::Cos(angle) * spacing;
 		float yIncrement = Math::Sin(angle) * spacing;
 
-		
-		array<wchar_t>^ asciiChars = { L'?', L':', L'.', L'-', L'@', L'&', L'*', L'%', L'#', L'$' };
-
 		float x = start.X;
 		float y = start.Y;
+
+		Random^ rand = gcnew Random();
 
 		for (int i = 0; i <= steps; i++) {
 			
@@ -378,12 +390,11 @@ namespace realtimeasciigenerator {
 				gcnew System::Drawing::Font("Courier New", 14),
 				gcnew SolidBrush(selectedColor), (int)x, (int)y);
 
-			
 			x += xIncrement;
 			y += yIncrement;
 		}
 
-		pictureBox1->Refresh(); 
+		pictureBox1->Refresh();
 	}
 
 	
@@ -434,17 +445,7 @@ namespace realtimeasciigenerator {
 
 		pictureBox1->Refresh();
 	}
-	private: System::Void numberCharactorToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-		asciiCharset = "0123456789";
-	}
-
-	private: System::Void englishCharactorToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-		asciiCharset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	}
-
-	private: System::Void specialToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
-		asciiCharset = "!@#$%^&*()_+-=[]{}|;':\",./<>?";
-	}
+	
 	private: System::Void pictureBox1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void openFileDialog1_FileOk(System::Object^ sender, System::ComponentModel::CancelEventArgs^ e) {
