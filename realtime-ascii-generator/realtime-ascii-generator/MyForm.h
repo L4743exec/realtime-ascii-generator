@@ -418,6 +418,7 @@ private: System::Void camera_Click(System::Object^ sender, System::EventArgs^ e)
 }
 	   // ASCII conversion triggered by menu click
 private: System::Void specialCharactersToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	asciiChars = " .:-=+*#%@";
 	if (loadedImage == nullptr) {
 		MessageBox::Show("No image is loaded. Please open an image first.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 		return;
